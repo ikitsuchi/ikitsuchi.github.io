@@ -1,0 +1,94 @@
+baseURL: http://ikitsuchi.github.io/
+languageCode: en-us
+title: "Hλlcyon Days"
+theme: "PaperMod"
+
+enableRobotsTXT: true
+buildDrafts: false
+buildFuture: false
+buildExpired: false
+
+defaultContentLanguage: en
+defaultContentLanguageInSubdir: true
+
+languages:
+  en:
+    languageName: "English"
+    weight: 1
+    menu:
+      main:
+        - name: About
+          url: about/
+          weight: 5
+        - name: Posts
+          url: posts/
+          weight: 6
+        - name: Archives
+          url: archives/
+          weight: 7
+        - name: Friends
+          url: friends/
+          weight: 8
+        - name: Search
+          url: search/
+          weight: 9
+
+    params:
+      profileMode:
+        enabled: true
+        title: "Hλlcyon Days"
+        subtitle: "Ikitsu's blog."
+        imageUrl: "/images/avatar.png"
+        imageTitle: "avatar.jpeg"
+        imageWidth: 140
+        imageHeight: 140
+
+params:
+  env: production
+  keywords: [Blog, OpenSource, Coding, Programming]
+  author: "Ikitsu"
+  defaultTheme: auto
+  disableThemeToggle: false
+
+  ShowToc: true
+  TocOpen: false
+  ShowBreadCrumbs: true
+  ShowReadingTime: false
+  ShowPostNavLinks: true
+  ShowShareButtons: false
+  ShowCodeCopyButtons: true
+  displayFullLangName: true
+
+  homeInfoParams:
+    Title: "Hλlcyon Days"
+    Content: "Ikitsu's blog."
+
+  profileMode:
+    enabled: true
+    title: "Hλlcyon Days"
+    subtitle: "Ikitsu's blog."
+    imageUrl: "/images/avatar.png"
+    imageTitle: "avatar.gif"
+    imageWidth: 140
+    imageHeight: 140
+
+  socialIcons:
+    - name: github
+      url: "https://github.com/ikitsuchi"
+    - name: twitter
+      url: "https://twitter.com/ikitsuchi"
+    - name: Telegram
+      url: "https://t.me/ikitsuchi"
+    - name: RsS
+      url: "index.xml"
+
+taxonomies:
+  category: categories
+  tag: tags
+  series: series
+
+outputs:
+  home:
+    - HTML
+    - RSS
+    - JSON

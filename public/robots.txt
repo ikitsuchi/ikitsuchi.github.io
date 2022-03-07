@@ -1,0 +1,3 @@
+User-agent: *
+Disallow:
+Sitemap: http://ikitsuchi.github.io/sitemap.xml
