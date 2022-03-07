@@ -29,9 +29,15 @@ languages:
         - name: Friends
           url: friends/
           weight: 8
+        - name: Tags
+          url: tags/
+          weight: 9
+        - name: Categories
+          url: categories/
+          weight: 10
         - name: Search
           url: search/
-          weight: 9
+          weight: 11
 
     params:
       profileMode:
