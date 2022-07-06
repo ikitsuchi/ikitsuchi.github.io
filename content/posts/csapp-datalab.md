@@ -39,7 +39,7 @@ int tmin(void) {
 
 > Returns 1 if x is the maximum, two's complement number, and 0 otherwise.
 
-If `x` is tmax, then `x + (x + 1) = -1`. However, -1 also satisfies this property, so we can exclude it out using `-1 + 1 = 0`.
+如果 `x` 是 tmax, 那么 `x + (x + 1) = -1`. 然而 -1 也满足这个性质，所以用 `-1 + 1 = 0` 把 -1 去掉。
 
 ```cpp
 int isTmax(int x) {
@@ -51,7 +51,7 @@ int isTmax(int x) {
 
 > Return 1 if all odd-numbered bits in word set to 1. (where bits are numbered from 0 (least significant) to 31 (most significant))
 
-We can use a mask `0xAAAAAAAA` to determine whether x is legal or not.
+可以用一个 mask `0xAAAAAAAA` 去判断 x 是否合法。
 
 ```cpp
 int allOddBits(int x) {
@@ -65,7 +65,7 @@ int allOddBits(int x) {
 
 > Return -x.
 
-Definition of complement.
+根据补码的定义。
 
 ```cpp
 int negate(int x) {
@@ -77,7 +77,7 @@ int negate(int x) {
 
 > Return 1 if 0x30 <= x <= 0x39 (ASCII codes for characters '0' to '9').
 
-首先判断是否为 0x3X，在判断第 4 个 bit 是否为 0，若为 1 第 2 和 3 bit 是否为 0，每个答案都是 0 / 1，用位运算统计起来。
+首先判断是否为 0x3X，再判断第 4 个 bit 是否为 0，若为 1 则判断第 2 和 3 bit 是否为 0，每个答案都是 0 / 1，用位运算统计起来。
 
 ```cpp
 int isAsciiDigit(int x) {
@@ -94,7 +94,7 @@ int isAsciiDigit(int x) {
 
 把 x 先直接转化为 0 或 1，再取补码，1 能变成全 1，这样 x 就变成了一个 mask。
 
-若 x 为全 1，x & y = y，若 x 为全 0，x & y = 0。
+若 x 为全 1，x & y = y，若 x 为全 0，x & y = 0。z 同理，反过来即可。
 
 ```cpp
 int conditional(int x, int y, int z) {
@@ -112,22 +112,17 @@ $x \le y \Rightarrow y - x \ge 0$.
 
 那么将 x 取补码得到 -x 与 y 相加得到 y - x，判断符号位。
 
-但如果溢出了，这个判断方式就挂掉了。若 x、y 同号，必然不会溢出。而 x、y 不同号直接加一个判断符号就 OK 了。
+但如果溢出了，这个判断方式就挂掉了。若 x、y 同号，必然不会溢出。而 x、y 不同号，就判断一下是不是 x 是负数，y 是正数。
 
-还有一个问题是如果 x 是 tmin，取补码并得不到 -x。当 x 为 tmin 不等式结果必为 1，考虑 y。若 y >= 0，符号就判定了；若 y < 0，发生负溢出加上 $2^w$ 后结果还是 y < 0，答案会错误。**这个问题很多旧版题的题解都没有考虑到，在新版题的数据是可以被 hack 的。**
-
-怎么办呢？直接特判 tmin（逃
-
-
+还有一个问题是如果 x 是 tmin，取补码并得不到 -x。当 x 为 tmin 不等式结果必为 1，考虑 y。若 y >= 0，符号就判定了；若 y < 0，加上 $2^31$ 后结果 > 0，答案也对。所以好像不用管（
 
 ```cpp
 int isLessOrEqual(int x, int y) {
   int sum = (~x + 1) + y;
   int sign_x = (x >> 31) & 1;
   int sign_y = (y >> 31) & 1;
-  int sign_minus = !((sum >> 31) & 1);
-  int is_tmin = !(x ^ (1 << 31));
-  return (sign_x & !sign_y) | is_tmin | (!(sign_x ^ sign_y) & sign_minus);
+  int sign_minus = ((sum >> 31) & 1);
+  return (sign_x & !sign_y) | ((sign_x ^ sign_y) & sign_minus);
 }
 ```
 
@@ -135,7 +130,7 @@ int isLessOrEqual(int x, int y) {
 
 > Implement the ! operator, using all of the legal operators except !.
 
-对一个除了 0 和 tmin 以外的数，它的补码是他的相反数，tmin 和 0 的补码还是本身，但只有 0 的原数和补码符号位都是 0。
+对一个除了 0 和 tmin 以外的数，它的补码是它的相反数，tmin 和 0 的补码还是本身，可以用补码和原码的符号位都是 0 来判断。
 
 ```cpp
 int logicalNeg(int x) {
@@ -149,7 +144,7 @@ int logicalNeg(int x) {
 
 如果是正数，即为最高位 1 所在位 + 1 位（符号位）。
 
-如果是负数，那就直接取反，变成找最高位 1。
+如果是负数，那就直接取反，还是找最高位 1。
 
 ```cpp
 int howManyBits(int x) {
