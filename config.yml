@@ -75,7 +75,7 @@ params:
     title: "Magic Shop of Raspberry"
     subtitle: "Ikitsu's blog."
     imageUrl: "/images/avatar.png"
-    imageTitle: "avatar.gif"
+    imageTitle: "avatar.png"
     imageWidth: 140
     imageHeight: 140
     mainSections:
