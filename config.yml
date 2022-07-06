@@ -1,8 +1,7 @@
-baseURL: http://ikitsuchi.github.io/
+baseURL: https://ikitsu.moe/
 languageCode: en-us
-title: "Hλlcyon Days"
+title: "Magic Shop of Raspberry"
 theme: "PaperMod"
-
 enableRobotsTXT: true
 buildDrafts: false
 buildFuture: false
@@ -42,10 +41,10 @@ languages:
     params:
       profileMode:
         enabled: true
-        title: "Hλlcyon Days"
+        title: "Magic Shop of Raspberry"
         subtitle: "Ikitsu's blog."
         imageUrl: "/images/avatar.png"
-        imageTitle: "avatar.jpeg"
+        imageTitle: "avatar"
         imageWidth: 140
         imageHeight: 140
 
@@ -64,19 +63,23 @@ params:
   ShowShareButtons: false
   ShowCodeCopyButtons: true
   displayFullLangName: true
+  mathjax: true
 
   homeInfoParams:
-    Title: "Hλlcyon Days"
+    Title: "Magic Shop of Raspberry"
     Content: "Ikitsu's blog."
+
 
   profileMode:
     enabled: true
-    title: "Hλlcyon Days"
+    title: "Magic Shop of Raspberry"
     subtitle: "Ikitsu's blog."
     imageUrl: "/images/avatar.png"
     imageTitle: "avatar.gif"
     imageWidth: 140
     imageHeight: 140
+    mainSections:
+      - posts
 
   socialIcons:
     - name: github
