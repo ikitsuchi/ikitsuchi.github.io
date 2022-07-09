@@ -136,4 +136,7 @@
             {{- end }}
         </ul>
     </nav>
+    {{ if or .Params.math .Site.Params.math }}
+    {{ partial "math.html" . }}
+    {{ end }}
 </header>

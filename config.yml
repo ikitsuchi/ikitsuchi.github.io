@@ -88,6 +88,8 @@ params:
       url: "https://twitter.com/ikitsuchi"
     - name: Telegram
       url: "https://t.me/ikitsuchi"
+    - name: email
+      url: mailto:wychen325@gmail.com
     - name: RsS
       url: "index.xml"
 
