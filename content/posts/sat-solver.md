@@ -55,15 +55,17 @@ DPLL:
 DPLL 有两个缺点：首先它遇到冲突的时候学不到任何东西，其次它每次只会回溯一层。这两点导致它在搜索过程中有很多时间被浪费在了必定失败的搜索空间中。CDCL 利用子句学习优化了 DPLL，为搜索树剪枝。
 
 在 CDCL SAT 求解器中，每个变元 $x_i$ 有以下几个特征：
-* value：$\nu(x_i) \in \\{0, u, 1\\}$
-* antecedent： $\alpha(x_i) \in \varphi \cup \\{\mathrm{NIL}\\}$
-* decision level：$\delta(x_i) \in \\{-1, 0, 1, \cdots, |X|\\}$
+* 值 (value)：$\nu(x_i) \in \\{0, u, 1\\}$
+* 前因 (antecedent)： $\alpha(x_i) \in \varphi \cup \\{\mathrm{NIL}\\}$
+* 决策层 (decision level)：$\delta(x_i) \in \\{-1, 0, 1, \cdots, |X|\\}$
 
-若变元 $x_i$ 是子句 $\omega_i$ 用 BCP 推出了赋值，那么称 $\omega_i$ 为 $x_i$ 的 antecedent，$\alpha(x_i) = \omega_i$。如果变元是搜索过程中的决策变元或者是未赋值的，那么它的 antecedent 是 $\mathrm{NIL}$。
+若变元 $x_i$ 是子句 $\omega_i$ 用 BCP 推出了赋值，那么称 $\omega_i$ 为 $x_i$ 的前因，$\alpha(x_i) = \omega_i$。如果变元是搜索过程中的决策变元或者是未赋值的，那么它的前因是 $\mathrm{NIL}$。
 
-变元 $x_i$ 的 decision level 表示了它被赋值时在决策树中的深度。未赋值的变元的 decision level 为 -1，$\delta(x_i) = -1$。被推出的变元 $x_i$ 的 decision level 是其 antecedent 中其他已推出变元的 decision level 的最大值，或者有可能 antecedent 是单元子句，则decision level 为 0。$\delta(x_i) = \max(\\{0\\} \cup \\{\delta(x_j)\ |\ x_j \in \omega \wedge x_j \not ={x_i}\\})$。文字的 decision level 是其变元的 decision level。
+变元 $x_i$ 的决策层表示了它被赋值时在决策树中的深度。未赋值的变元的决策层为 -1，$\delta(x_i) = -1$。被推出的变元 $x_i$ 的决策层是其前因中其他已推出变元的决策层的最大值，若前因是单元子句，则决策层为 0。$\delta(x_i) = \max(\\{0\\} \cup \\{\delta(x_j)\ |\ x_j \in \omega \wedge x_j \not ={x_i}\\})$。文字的决策层是其变元的决策层。
 
 用 $x_i = v @ d$ 表示 $\nu(x_i) = v$ 且 $\delta(x_i) = d$。
+
+被赋值变元和其前因定义了一个 DAG，称其为蕴含图，$I = (V_I, E_I)$。蕴含图中的结点为所有已赋值的变元以及一个特殊的结点 $\kappa$
 
 ## Reference
 
